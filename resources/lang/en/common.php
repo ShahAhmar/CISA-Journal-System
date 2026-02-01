@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'welcome' => 'Welcome',
+    'login' => 'Login',
+    'logout' => 'Logout',
+    'register' => 'Register',
+    'dashboard' => 'Dashboard',
+    'submissions' => 'Submissions',
+    'reviews' => 'Reviews',
+    'issues' => 'Issues',
+    'articles' => 'Articles',
+    'settings' => 'Settings',
+    'profile' => 'Profile',
+    'search' => 'Search',
+    'submit' => 'Submit',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'delete' => 'Delete',
+    'edit' => 'Edit',
+    'view' => 'View',
+    'back' => 'Back',
+    'next' => 'Next',
+    'previous' => 'Previous',
+    'submit_article' => 'Submit Article',
+    'my_submissions' => 'My Submissions',
+    'editor_dashboard' => 'Editor Dashboard',
+    'reviewer_dashboard' => 'Reviewer Dashboard',
+    'admin_dashboard' => 'Admin Dashboard',
+];
+
