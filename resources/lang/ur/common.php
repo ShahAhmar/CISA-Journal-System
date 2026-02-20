@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'welcome' => 'خوش آمدید',
+    'login' => 'لاگ ان',
+    'logout' => 'لاگ آؤٹ',
+    'register' => 'رجسٹر',
+    'dashboard' => 'ڈیش بورڈ',
+    'submissions' => 'جمع کرائیں',
+    'reviews' => 'جائزے',
+    'issues' => 'مسائل',
+    'articles' => 'مضامین',
+    'settings' => 'ترتیبات',
+    'profile' => 'پروفائل',
+    'search' => 'تلاش',
+    'submit' => 'جمع کریں',
+    'save' => 'محفوظ کریں',
+    'cancel' => 'منسوخ',
+    'delete' => 'حذف',
+    'edit' => 'ترمیم',
+    'view' => 'دیکھیں',
+    'back' => 'واپس',
+    'next' => 'اگلا',
+    'previous' => 'پچھلا',
+    'submit_article' => 'مضمون جمع کریں',
+    'my_submissions' => 'میری جمع کرائیاں',
+    'editor_dashboard' => 'ایڈیٹر ڈیش بورڈ',
+    'reviewer_dashboard' => 'ریویور ڈیش بورڈ',
+    'admin_dashboard' => 'ایڈمن ڈیش بورڈ',
+];
+

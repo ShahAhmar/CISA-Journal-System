@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMANP Journal Management System - Complete User Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0056FF;
+            --secondary-color: #0F1B4C;
+            --accent-color: #00A8FF;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --danger-color: #EF4444;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-50);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h3 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background: var(--gray-100);
+            color: var(--primary-color);
+        }
+
+        .nav-menu a.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-menu a i {
+            margin-right: 0.75rem;
+            width: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 100px;
+        }
+
+        .section h2 {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h4 {
+            color: var(--gray-800);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Steps */
+        .step {
+            background: var(--gray-50);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .step h4 {
+            display: inline-block;
+            margin: 0;
+            color: var(--secondary-color);
+        }
+
+        .step-content {
+            margin-top: 1rem;
+            padding-left: 3rem;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: var(--gray-900);
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #E0F2FE;
+            border-color: var(--accent-color);
+            color: #0C4A6E;
+        }
+
+        .alert-success {
+            background: #D1FAE5;
+            border-color: var(--success-color);
+            color: #065F46;
+        }
+
+        .alert-warning {
+            background: #FEF3C7;
+            border-color: var(--warning-color);
+            color: #92400E;
+        }
+
+        .alert-danger {
+            background: #FEE2E2;
+            border-color: var(--danger-color);
+            color: #991B1B;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        th {
+            background: var(--gray-100);
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        tr:hover {
+            background: var(--gray-50);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .badge-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .badge-warning {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        /* Icons */
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 12px;
+            margin-right: 1rem;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--gray-50);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Screenshot Placeholder */
+        .screenshot {
+            background: var(--gray-200);
+            border: 2px dashed var(--gray-300);
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            color: var(--gray-600);
+            margin: 1.5rem 0;
+        }
+
+        .screenshot i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--gray-400);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidebar {
+                display: none;
+            }
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1><i class="fas fa-book-open"></i> EMANP Journal Management System</h1>
+            <p>Complete User Guide & Documentation</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h3><i class="fas fa-list"></i> Navigation</h3>
+            <ul class="nav-menu">
+                <li><a href="#introduction"><i class="fas fa-home"></i> Introduction</a></li>
+                <li><a href="#getting-started"><i class="fas fa-rocket"></i> Getting Started</a></li>
+                <li><a href="#admin-guide"><i class="fas fa-user-shield"></i> Admin Guide</a></li>
+                <li><a href="#journal-management"><i class="fas fa-book"></i> Journal Management</a></li>
+                <li><a href="#section-management"><i class="fas fa-folder"></i> Section Management</a></li>
+                <li><a href="#submission-process"><i class="fas fa-file-upload"></i> Submission Process</a></li>
+                <li><a href="#editor-workflow"><i class="fas fa-user-edit"></i> Editor Workflow</a></li>
+                <li><a href="#review-process"><i class="fas fa-star"></i> Review Process</a></li>
+                <li><a href="#author-guide"><i class="fas fa-user"></i> Author Guide</a></li>
+                <li><a href="#features"><i class="fas fa-cogs"></i> All Features</a></li>
+                <li><a href="#troubleshooting"><i class="fas fa-tools"></i> Troubleshooting</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Introduction -->
+            <section id="introduction" class="section">
+                <h2><i class="fas fa-home"></i> Introduction</h2>
+                <p>Welcome to the EMANP Journal Management System - a comprehensive platform for managing academic journals, submissions, reviews, and publications.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon-box"><i class="fas fa-book"></i></div>
+                        <h4>Journal Management</h4>
+                        <p>Create and manage multiple journals with custom settings</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon-box"><i class="fas fa-file-upload"></i></div>
+                        <h4>Submission System</h4>
+                        <p>Complete submission workflow for authors</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon-box"><i class="fas fa-user-edit"></i></div>
+                        <h4>Editorial Workflow</h4>
+                        <p>Full editorial process management</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon-box"><i class="fas fa-star"></i></div>
+                        <h4>Peer Review</h4>
+                        <p>Comprehensive review system</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Getting Started -->
+            <section id="getting-started" class="section">
+                <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>System Access</h4>
+                    <div class="step-content">
+                        <p>Access the system through your web browser:</p>
+                        <div class="code-block">http://your-domain.com</div>
+                        <p>Or for local development:</p>
+                        <div class="code-block">http://localhost/journalahmar</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>User Roles</h4>
+                    <div class="step-content">
+                        <p>The system has different user roles:</p>
+                        <table>
+                            <tr>
+                                <th>Role</th>
+                                <th>Permissions</th>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-primary">Admin</span></td>
+                                <td>Full system access, journal management, user management</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-primary">Journal Manager</span></td>
+                                <td>Manage specific journal(s), editorial decisions</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-primary">Editor</span></td>
+                                <td>Review submissions, assign reviewers, make decisions</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-primary">Author</span></td>
+                                <td>Submit articles, track submissions</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-primary">Reviewer</span></td>
+                                <td>Review assigned submissions</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>First Login</h4>
+                    <div class="step-content">
+                        <p>Login with your credentials:</p>
+                        <ol>
+                            <li>Go to login page</li>
+                            <li>Enter your email and password</li>
+                            <li>Click "Login"</li>
+                            <li>You'll be redirected to your dashboard based on your role</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Guide -->
+            <section id="admin-guide" class="section">
+                <h2><i class="fas fa-user-shield"></i> Admin Guide</h2>
+                
+                <h3>Admin Dashboard</h3>
+                <p>The admin dashboard provides an overview of the entire system with statistics and quick access to all features.</p>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Accessing Admin Panel</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Login with admin credentials</li>
+                            <li>You'll be automatically redirected to admin dashboard</li>
+                            <li>Or navigate to: <code>/admin/dashboard</code></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Admin Features</h4>
+                    <div class="step-content">
+                        <ul>
+                            <li><strong>Journals Management:</strong> Create, edit, delete journals</li>
+                            <li><strong>Users Management:</strong> Manage all users and their roles</li>
+                            <li><strong>Submissions Overview:</strong> View all submissions across journals</li>
+                            <li><strong>System Settings:</strong> Configure system-wide settings</li>
+                            <li><strong>Website Settings:</strong> Manage logo, favicon, homepage content</li>
+                            <li><strong>Announcements:</strong> Create and manage announcements</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Journal Management -->
+            <section id="journal-management" class="section">
+                <h2><i class="fas fa-book"></i> Journal Management</h2>
+                
+                <h3>Creating a New Journal</h3>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Navigate to Journals</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Login as Admin</li>
+                            <li>Go to Admin Dashboard</li>
+                            <li>Click on <strong>"Journals"</strong> in the sidebar</li>
+                            <li>Click <strong>"Create New Journal"</strong> button</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Fill Basic Information</h4>
+                    <div class="step-content">
+                        <p>Fill in the required fields:</p>
+                        <ul>
+                            <li><strong>Journal Name:</strong> Full name of the journal</li>
+                            <li><strong>Journal Initials:</strong> Short abbreviation</li>
+                            <li><strong>Slug:</strong> URL-friendly name (auto-generated)</li>
+                            <li><strong>Description:</strong> Brief description of the journal</li>
+                            <li><strong>ISSN:</strong> International Standard Serial Number</li>
+                            <li><strong>Print ISSN:</strong> Print version ISSN</li>
+                            <li><strong>Online ISSN:</strong> Online version ISSN</li>
+                        </ul>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> <strong>Note:</strong> Slug is automatically generated from journal name, but you can customize it.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>Contact Information</h4>
+                    <div class="step-content">
+                        <p>Add contact details:</p>
+                        <ul>
+                            <li>Primary Contact Name</li>
+                            <li>Primary Contact Email</li>
+                            <li>Contact Phone</li>
+                            <li>Contact Address</li>
+                            <li>Support Contact Name</li>
+                            <li>Support Email</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h4>Content Sections</h4>
+                    <div class="step-content">
+                        <p>Configure journal content:</p>
+                        <ul>
+                            <li><strong>Aims & Scope:</strong> Journal's aims and scope</li>
+                            <li><strong>Focus & Scope:</strong> Detailed focus areas</li>
+                            <li><strong>Publication Frequency:</strong> How often journal publishes</li>
+                            <li><strong>Peer Review Process:</strong> Review process description</li>
+                            <li><strong>Peer Review Policy:</strong> Detailed review policy</li>
+                            <li><strong>Open Access Policy:</strong> Open access information</li>
+                            <li><strong>Copyright Notice:</strong> Copyright information</li>
+                            <li><strong>Privacy Statement:</strong> Privacy policy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <h4>Author Guidelines</h4>
+                    <div class="step-content">
+                        <p>Set up submission guidelines:</p>
+                        <ul>
+                            <li><strong>Submission Guidelines:</strong> General submission instructions</li>
+                            <li><strong>Author Guidelines:</strong> Detailed author instructions</li>
+                            <li><strong>Submission Requirements:</strong> <span class="badge badge-warning">IMPORTANT</span> Requirements that appear in submission form</li>
+                            <li><strong>Submission Checklist:</strong> <span class="badge badge-warning">IMPORTANT</span> Checklist items for authors</li>
+                            <li><strong>Competing Interest Statement:</strong> Conflict of interest policy</li>
+                            <li><strong>Copyright Agreement:</strong> Copyright terms</li>
+                        </ul>
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Submission Requirements and Checklist are displayed to authors during submission. Make sure to fill these fields properly.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <h4>Editorial Team</h4>
+                    <div class="step-content">
+                        <p>Add editorial team information:</p>
+                        <ul>
+                            <li>Editor-in-Chief</li>
+                            <li>Managing Editor</li>
+                            <li>Section Editors</li>
+                            <li>Editorial Board</li>
+                            <li>Editorial Team</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">7</span>
+                    <h4>Review Settings</h4>
+                    <div class="step-content">
+                        <ul>
+                            <li><strong>Review Rounds:</strong> Number of review rounds (1-5)</li>
+                            <li><strong>Review Method:</strong> Double-blind, Single-blind, or Open</li>
+                            <li><strong>Requires Review:</strong> Whether review is mandatory</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">8</span>
+                    <h4>Website Settings</h4>
+                    <div class="step-content">
+                        <ul>
+                            <li><strong>Logo:</strong> Upload journal logo</li>
+                            <li><strong>Cover Image:</strong> Journal cover image</li>
+                            <li><strong>Favicon:</strong> Browser icon</li>
+                            <li><strong>Theme:</strong> Color scheme</li>
+                            <li><strong>Homepage Content:</strong> Custom homepage content</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">9</span>
+                    <h4>Save Journal</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Review all information</li>
+                            <li>Click <strong>"Create Journal"</strong> button</li>
+                            <li>Journal will be created and you'll be redirected to journal list</li>
+                        </ol>
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle"></i> <strong>Success!</strong> Your journal has been created. Now you can add sections and assign editors.
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Editing a Journal</h3>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Access Journal Edit</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Go to Admin Dashboard → Journals</li>
+                            <li>Find the journal you want to edit</li>
+                            <li>Click <strong>"Edit"</strong> button</li>
+                            <li>Make your changes</li>
+                            <li>Click <strong>"Update Journal"</strong></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Management -->
+            <section id="section-management" class="section">
+                <h2><i class="fas fa-folder"></i> Section Management</h2>
+                
+                <p>Journal sections allow you to categorize submissions (e.g., Research Article, Review Article, Case Study, etc.)</p>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Access Sections</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Go to Admin Dashboard → Journals</li>
+                            <li>Select a journal</li>
+                            <li>Click <strong>"Sections"</strong> tab or navigate to journal sections</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Create New Section</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Click <strong>"Create Section"</strong> button</li>
+                            <li>Fill in the form:</li>
+                            <ul>
+                                <li><strong>Title:</strong> Section name (e.g., "Research Article")</li>
+                                <li><strong>Description:</strong> Brief description of the section</li>
+                                <li><strong>Section Editor:</strong> Assign a section editor (optional)</li>
+                                <li><strong>Word Limit Min:</strong> Minimum word count</li>
+                                <li><strong>Word Limit Max:</strong> Maximum word count</li>
+                                <li><strong>Review Type:</strong> Type of review for this section</li>
+                                <li><strong>Order:</strong> Display order (lower numbers appear first)</li>
+                                <li><strong>Active:</strong> Check to make section active</li>
+                            </ul>
+                            <li>Click <strong>"Create Section"</strong></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>Edit Section</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Go to Sections list</li>
+                            <li>Click <strong>"Edit"</strong> on the section you want to modify</li>
+                            <li>Make changes</li>
+                            <li>Click <strong>"Update Section"</strong></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h4>Deactivate Section</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Edit the section</li>
+                            <li>Uncheck <strong>"Active"</strong> checkbox</li>
+                            <li>Save changes</li>
+                            <li>Section will no longer appear in submission form</li>
+                        </ol>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> <strong>Note:</strong> Deactivating a section doesn't delete it. You can reactivate it later.
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Common Section Types</h3>
+                <table>
+                    <tr>
+                        <th>Section Name</th>
+                        <th>Description</th>
+                        <th>Word Limit</th>
+                    </tr>
+                    <tr>
+                        <td>Research Article</td>
+                        <td>Original research work</td>
+                        <td>3000-8000</td>
+                    </tr>
+                    <tr>
+                        <td>Review Article</td>
+                        <td>Literature review papers</td>
+                        <td>5000-10000</td>
+                    </tr>
+                    <tr>
+                        <td>Case Study</td>
+                        <td>Case study reports</td>
+                        <td>2000-5000</td>
+                    </tr>
+                    <tr>
+                        <td>Short Communication</td>
+                        <td>Brief research communications</td>
+                        <td>1000-3000</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Submission Process -->
+            <section id="submission-process" class="section">
+                <h2><i class="fas fa-file-upload"></i> Submission Process</h2>
+                
+                <h3>Author Submission Guide</h3>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Login as Author</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Go to login page</li>
+                            <li>Enter your email and password</li>
+                            <li>If you don't have an account, click "Register" to create one</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Select Journal</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>After login, go to "PUBLISH WITH US" or homepage</li>
+                            <li>Browse available journals</li>
+                            <li>Click <strong>"Select"</strong> on the journal you want to submit to</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>Start Submission</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Click <strong>"Submit Article"</strong> or navigate to submission page</li>
+                            <li>You'll see a multi-step submission form</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h4>Step 1: Start Submission</h4>
+                    <div class="step-content">
+                        <ul>
+                            <li><strong>Select Section:</strong> Choose appropriate section (Research Article, Review, etc.)</li>
+                            <li><strong>Submission Requirements:</strong> Review the requirements displayed</li>
+                            <li><strong>Submission Checklist:</strong> Review the checklist items</li>
+                            <li><strong>Confirm Requirements:</strong> Check the checkbox to confirm</li>
+                            <li><strong>Privacy Statement:</strong> Read and agree to privacy statement</li>
+                            <li>Click <strong>"Next: Upload Files"</strong></li>
+                        </ul>
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Make sure you've read and understood all requirements before proceeding.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <h4>Step 2: Upload Files</h4>
+                    <div class="step-content">
+                        <ul>
+                            <li><strong>Manuscript:</strong> Upload your main manuscript file (DOC or DOCX, max 10MB)</li>
+                            <li><strong>Title Page:</strong> Optional - separate title page</li>
+                            <li><strong>Cover Letter:</strong> Optional - cover letter to editor</li>
+                            <li><strong>Figures:</strong> Optional - separate figure files (PNG, JPG, JPEG)</li>
+                            <li><strong>Tables:</strong> Optional - separate table files (DOC, DOCX, XLS, XLSX)</li>
+                            <li><strong>Supplementary Files:</strong> Optional - additional supporting files</li>
+                            <li>Click <strong>"Next: Enter Metadata"</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <h4>Step 3: Enter Metadata</h4>
+                    <div class="step-content">
+                        <ul>
+                            <li><strong>Title:</strong> Article title (required, max 500 characters)</li>
+                            <li><strong>Abstract:</strong> Article abstract (required)</li>
+                            <li><strong>Keywords:</strong> 3-5 keywords separated by commas</li>
+                            <li><strong>Supporting Agencies:</strong> Funding information (optional)</li>
+                            <li>Click <strong>"Next: Add Authors"</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">7</span>
+                    <h4>Step 4: Add Authors</h4>
+                    <div class="step-content">
+                        <ul>
+                            <li><strong>Add Author:</strong> Click to add author information</li>
+                            <li>For each author, provide:</li>
+                            <ul>
+                                <li>First Name (required)</li>
+                                <li>Last Name (required)</li>
+                                <li>Email (required)</li>
+                                <li>Country (optional)</li>
+                                <li>Affiliation (optional)</li>
+                                <li>ORCID ID (optional)</li>
+                            </ul>
+                            <li>First author is automatically set as corresponding author</li>
+                            <li>You can add multiple authors</li>
+                            <li>Click <strong>"Next: Review & Submit"</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">8</span>
+                    <h4>Step 5: Review & Submit</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Review all information:</li>
+                            <ul>
+                                <li>Title</li>
+                                <li>Abstract</li>
+                                <li>Authors</li>
+                                <li>Files</li>
+                            </ul>
+                            <li>Make any necessary corrections</li>
+                            <li>Click <strong>"Finalize Submission"</strong></li>
+                            <li>You'll be redirected to success page</li>
+                        </ol>
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle"></i> <strong>Congratulations!</strong> Your submission has been received. You'll receive email notifications about status updates.
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Tracking Your Submission</h3>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>View Submissions</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Go to <strong>"My Submissions"</strong> or <strong>"Dashboard"</strong></li>
+                            <li>You'll see a list of all your submissions</li>
+                            <li>Each submission shows:</li>
+                            <ul>
+                                <li>Title</li>
+                                <li>Journal</li>
+                                <li>Status</li>
+                                <li>Submission Date</li>
+                            </ul>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Submission Statuses</h4>
+                    <div class="step-content">
+                        <table>
+                            <tr>
+                                <th>Status</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-primary">Submitted</span></td>
+                                <td>Submission received, awaiting editor review</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-warning">Under Review</span></td>
+                                <td>Assigned to reviewers</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-warning">Revision Requested</span></td>
+                                <td>Editor has requested revisions</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-success">Accepted</span></td>
+                                <td>Submission accepted for publication</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-danger">Rejected</span></td>
+                                <td>Submission rejected</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-success">Published</span></td>
+                                <td>Article published</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <h3>Withdrawing a Submission</h3>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Withdrawal Process</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Go to "My Submissions"</li>
+                            <li>Open the submission you want to withdraw</li>
+                            <li>Scroll to <strong>"Withdraw Submission"</strong> section</li>
+                            <li>Click <strong>"Withdraw Submission"</strong> button</li>
+                            <li>Enter reason for withdrawal (required)</li>
+                            <li>Confirm withdrawal</li>
+                        </ol>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> <strong>Note:</strong> You can only withdraw submissions that are not already published, rejected, or withdrawn.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Editor Workflow -->
+            <section id="editor-workflow" class="section">
+                <h2><i class="fas fa-user-edit"></i> Editor Workflow</h2>
+                
+                <h3>Editor Dashboard</h3>
+                <p>The editor dashboard provides an overview of all submissions for your journal(s) with statistics and quick actions.</p>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Accessing Editor Dashboard</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Login with editor credentials</li>
+                            <li>You'll be redirected to editor dashboard</li>
+                            <li>If you have access to multiple journals, select a journal first</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Dashboard Statistics</h4>
+                    <div class="step-content">
+                        <p>The dashboard shows statistics cards:</p>
+                        <ul>
+                            <li><strong>Pending:</strong> Submissions awaiting initial review</li>
+                            <li><strong>Under Review:</strong> Submissions currently being reviewed</li>
+                            <li><strong>Revision:</strong> Submissions with revision requests</li>
+                            <li><strong>Accepted:</strong> Accepted submissions</li>
+                            <li><strong>Rejected:</strong> Rejected submissions</li>
+                            <li><strong>Withdrawn:</strong> Withdrawn submissions</li>
+                            <li><strong>Published:</strong> Published articles</li>
+                        </ul>
+                        <p>Click on any card to see filtered submissions list.</p>
+                    </div>
+                </div>
+
+                <h3>Viewing Submissions</h3>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Access Submission</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Go to "Recent Submissions" table or "All Submissions"</li>
+                            <li>Click <strong>"View"</strong> on any submission</li>
+                            <li>Submission detail page will open</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Submission Details</h4>
+                    <div class="step-content">
+                        <p>You'll see:</p>
+                        <ul>
+                            <li>Title and Abstract</li>
+                            <li>All Authors</li>
+                            <li>Uploaded Files (downloadable)</li>
+                            <li>Current Status</li>
+                            <li>Activity Log</li>
+                            <li>Reviews (if any)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Editor Actions</h3>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Assign Editor</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Open submission detail page</li>
+                            <li>In right sidebar, find <strong>"Assign Editor"</strong> section</li>
+                            <li>Select an editor from dropdown</li>
+                            <li>Click <strong>"Assign"</strong></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Assign Reviewer</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>In submission detail page, find <strong>"Assign Reviewer"</strong> section</li>
+                            <li>Select a reviewer from dropdown</li>
+                            <li>Set due date (must be future date)</li>
+                            <li>Click <strong>"Assign Reviewer"</strong></li>
+                            <li>Reviewer will receive email notification</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>Accept Submission</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Click <strong>"Accept Submission"</strong> button</li>
+                            <li>Modal will open</li>
+                            <li>Add optional notes</li>
+                            <li>Click <strong>"Accept"</strong></li>
+                            <li>Status will change to "Accepted" and move to copyediting stage</li>
+                            <li>Author will receive email notification</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h4>Reject Submission</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Click <strong>"Reject Submission"</strong> button</li>
+                            <li>Enter rejection reason (required)</li>
+                            <li>Click <strong>"Reject"</strong></li>
+                            <li>Status will change to "Rejected"</li>
+                            <li>Author will receive email notification</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <h4>Desk Reject</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>For submissions that don't meet basic criteria</li>
+                            <li>Click <strong>"Desk Reject"</strong> button</li>
+                            <li>Enter reason (required)</li>
+                            <li>Click <strong>"Desk Reject"</strong></li>
+                            <li>Rejected without sending to reviewers</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <h4>Request Revision</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Click <strong>"Request Revision"</strong> button</li>
+                            <li>Select revision type:</li>
+                            <ul>
+                                <li>Minor Revision</li>
+                                <li>Major Revision</li>
+                            </ul>
+                            <li>Enter comments for author (required)</li>
+                            <li>Click <strong>"Request Revision"</strong></li>
+                            <li>Status will change to "Revision Requested"</li>
+                            <li>Author will receive email notification</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">7</span>
+                    <h4>Publish Article</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>For accepted submissions ready for publication</li>
+                            <li>Click <strong>"Publish Article"</strong> button</li>
+                            <li>Select issue (optional)</li>
+                            <li>Enter page numbers (optional)</li>
+                            <li>Click <strong>"Publish"</strong></li>
+                            <li>Status will change to "Published"</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">8</span>
+                    <h4>Contact Author</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Click <strong>"Contact Author"</strong> button</li>
+                            <li>Enter email subject (required)</li>
+                            <li>Enter message (required)</li>
+                            <li>Click <strong>"Send Email"</strong></li>
+                            <li>Email will be sent to corresponding author</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Review Process -->
+            <section id="review-process" class="section">
+                <h2><i class="fas fa-star"></i> Review Process</h2>
+                
+                <h3>Reviewer Workflow</h3>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Receiving Review Invitation</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Reviewer receives email invitation</li>
+                            <li>Email contains link to review</li>
+                            <li>Reviewer can accept or decline</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Accepting Review</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Login to system</li>
+                            <li>Go to Reviewer Dashboard</li>
+                            <li>Find pending review invitation</li>
+                            <li>Click <strong>"Accept"</strong> or <strong>"Decline"</strong></li>
+                            <li>If accepting, set due date</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>Conducting Review</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Access review page</li>
+                            <li>Download and read manuscript</li>
+                            <li>Fill review form:</li>
+                            <ul>
+                                <li>Recommendation (Accept, Minor Revision, Major Revision, Reject)</li>
+                                <li>Comments for Editor</li>
+                                <li>Comments for Author</li>
+                                <li>Confidential comments (if any)</li>
+                            </ul>
+                            <li>Submit review</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3>Review Recommendations</h3>
+                <table>
+                    <tr>
+                        <th>Recommendation</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-success">Accept</span></td>
+                        <td>Article is suitable for publication as is</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">Minor Revision</span></td>
+                        <td>Article needs minor corrections</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">Major Revision</span></td>
+                        <td>Article needs significant revisions</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-danger">Reject</span></td>
+                        <td>Article is not suitable for publication</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Author Guide -->
+            <section id="author-guide" class="section">
+                <h2><i class="fas fa-user"></i> Author Guide</h2>
+                
+                <h3>Author Dashboard</h3>
+                <p>Authors can track all their submissions, view status updates, and manage their profile.</p>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Dashboard Overview</h4>
+                    <div class="step-content">
+                        <p>Dashboard shows:</p>
+                        <ul>
+                            <li><strong>Pending Submissions:</strong> Awaiting editor review</li>
+                            <li><strong>Under Review:</strong> Currently being reviewed</li>
+                            <li><strong>Accepted:</strong> Accepted submissions</li>
+                            <li><strong>Recent Submissions:</strong> List of your submissions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Uploading Revisions</h3>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>When Revision is Requested</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>You'll receive email notification</li>
+                            <li>Go to "My Submissions"</li>
+                            <li>Open the submission</li>
+                            <li>You'll see <strong>"Action Required"</strong> section</li>
+                            <li>Click <strong>"Upload Revision"</strong></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Upload Revised Manuscript</h4>
+                    <div class="step-content">
+                        <ol>
+                            <li>Upload revised manuscript file (DOC, DOCX, or PDF)</li>
+                            <li>Add author comments (optional) - explain what changes you made</li>
+                            <li>Click <strong>"Submit Revision"</strong></li>
+                            <li>New version will be created</li>
+                            <li>Status will change back to "Submitted" or "Under Review"</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- All Features -->
+            <section id="features" class="section">
+                <h2><i class="fas fa-cogs"></i> All Features</h2>
+                
+                <h3>System Features</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-book"></i> Multi-Journal Support</h4>
+                        <p>Manage multiple journals from single installation</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-users"></i> Role-Based Access</h4>
+                        <p>Admin, Editor, Author, Reviewer roles with specific permissions</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-file-upload"></i> Multi-Step Submission</h4>
+                        <p>Intuitive submission process with file uploads</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-star"></i> Peer Review System</h4>
+                        <p>Complete peer review workflow</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-envelope"></i> Email Notifications</h4>
+                        <p>Automatic email notifications for all actions</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-bullhorn"></i> Announcements</h4>
+                        <p>Create and manage journal announcements</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-issue"></i> Issue Management</h4>
+                        <p>Create and publish journal issues</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-search"></i> Search Functionality</h4>
+                        <p>Search articles, authors, and content</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-chart-bar"></i> Analytics</h4>
+                        <p>Track views, downloads, and statistics</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-cog"></i> Customizable Settings</h4>
+                        <p>Extensive customization options</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section id="troubleshooting" class="section">
+                <h2><i class="fas fa-tools"></i> Troubleshooting</h2>
+                
+                <h3>Common Issues</h3>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>403 Forbidden Errors</h4>
+                    <div class="step-content">
+                        <p><strong>Problem:</strong> Getting 403 errors when accessing pages</p>
+                        <p><strong>Solution:</strong></p>
+                        <ol>
+                            <li>Check user role and permissions</li>
+                            <li>Ensure user is assigned to journal (for editors)</li>
+                            <li>Clear cache:</li>
+                            <div class="code-block">php artisan route:clear
+php artisan config:clear
+php artisan view:clear
+php artisan cache:clear</div>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Requirements/Checklist Not Showing</h4>
+                    <div class="step-content">
+                        <p><strong>Problem:</strong> Submission requirements/checklist empty in form</p>
+                        <p><strong>Solution:</strong></p>
+                        <ol>
+                            <li>Go to Admin Panel → Journals → Edit Journal</li>
+                            <li>Find "Author Guidelines" section</li>
+                            <li>Fill "Submission Requirements" field</li>
+                            <li>Fill "Submission Checklist" field</li>
+                            <li>Save journal</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>File Upload Issues</h4>
+                    <div class="step-content">
+                        <p><strong>Problem:</strong> Files not uploading</p>
+                        <p><strong>Solution:</strong></p>
+                        <ol>
+                            <li>Check file size (max 10MB for manuscript)</li>
+                            <li>Check file format (DOC/DOCX for manuscript)</li>
+                            <li>Check storage permissions</li>
+                            <li>Check PHP upload limits in php.ini</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h4>Email Not Sending</h4>
+                    <div class="step-content">
+                        <p><strong>Problem:</strong> Email notifications not being sent</p>
+                        <p><strong>Solution:</strong></p>
+                        <ol>
+                            <li>Go to Admin Panel → System Settings</li>
+                            <li>Configure SMTP settings</li>
+                            <li>Test email configuration</li>
+                            <li>Check email logs</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>&copy; 2025 EMANP Journal Management System. All rights reserved.</p>
+                <p>For support, please contact your system administrator.</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Update active nav item
+                    document.querySelectorAll('.nav-menu a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Highlight current section in navigation
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
