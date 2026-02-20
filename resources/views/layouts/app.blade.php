@@ -837,6 +837,7 @@
                 <p class="text-purple-200 text-xs mb-2">&copy; {{ date('Y') }} CISA Interdisciplinary Journal. All
                     rights reserved.</p>
                 <p class="text-purple-300 text-xs">A Platform for Interdisciplinary Research Excellence</p>
+                <!-- CIJ Auto Deploy Verification -->
             </div>
         </div>
     </footer>
